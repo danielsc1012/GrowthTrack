@@ -1,0 +1,1205 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Descubre Tu Equipo – Iglesia Northwood</title>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════
+   IGLESIA NORTHWOOD BRAND SYSTEM
+   Colors: Teal #00babc · Orange #f15d2c
+           Dark #4a4d4d · Black · White
+   Fonts:  Helvetica (primary) → Montserrat (secondary)
+   ══════════════════════════════════════ */
+:root {
+  --teal:      #00babc;
+  --teal-dark: #009a9c;
+  --orange:    #f15d2c;
+  --dark:      #4a4d4d;
+  --black:     #1a1a1a;
+  --white:     #ffffff;
+  --off-white: #f7f7f7;
+  --border:    #e0e0e0;
+  --text-body: #4a4d4d;
+  --text-soft: #7a7d7d;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+  background: var(--off-white);
+  color: var(--text-body);
+  min-height: 100vh;
+}
+
+/* ── HEADER ── */
+header {
+  background: var(--teal);
+  padding: 36px 24px 32px;
+  position: relative;
+  overflow: hidden;
+}
+header::after {
+  content: '';
+  position: absolute;
+  right: -60px; bottom: -60px;
+  width: 220px; height: 220px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+  pointer-events: none;
+}
+header::before {
+  content: '';
+  position: absolute;
+  right: 40px; top: -40px;
+  width: 160px; height: 160px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.header-inner {
+  max-width: 680px;
+  margin: 0 auto;
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+/* SVG Logo representation */
+.logo-mark {
+  flex-shrink: 0;
+  width: 52px; height: 52px;
+  background: rgba(255,255,255,0.18);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  border: 2px solid rgba(255,255,255,0.4);
+  margin-top: 4px;
+}
+.logo-mark svg { width: 30px; height: 30px; }
+.header-text { flex: 1; }
+.logo-name {
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.9);
+  margin-bottom: 6px;
+}
+header h1 {
+  font-family: Helvetica, 'Montserrat', sans-serif;
+  font-size: clamp(26px, 5vw, 38px);
+  font-weight: 700;
+  color: var(--white);
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  margin-bottom: 10px;
+}
+header h1 span { color: var(--black); opacity: 0.75; }
+header p {
+  color: rgba(255,255,255,0.82);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.65;
+  max-width: 460px;
+}
+
+/* ── PROGRESS ── */
+.progress-wrap {
+  background: var(--black);
+  padding: 16px 24px 18px;
+}
+.progress-inner { max-width: 680px; margin: 0 auto; }
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.progress-label {
+  font-size: 9.5px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.3);
+  transition: color 0.3s;
+}
+.progress-label.active { color: var(--teal); }
+.progress-bar-bg {
+  background: rgba(255,255,255,0.12);
+  border-radius: 2px;
+  height: 3px;
+  overflow: hidden;
+}
+.progress-bar-fill {
+  background: var(--teal);
+  height: 100%;
+  border-radius: 2px;
+  transition: width 0.55s cubic-bezier(0.4,0,0.2,1);
+  width: 0%;
+}
+
+/* ── MAIN ── */
+main { max-width: 680px; margin: 0 auto; padding: 32px 20px 64px; }
+
+/* ── SECTIONS ── */
+.section { display: none; }
+.section.active { display: block; animation: fadeUp 0.38s ease; }
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── SECTION HEADER ── */
+.section-header { margin-bottom: 28px; }
+.section-label {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--teal);
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--teal);
+}
+.section-title {
+  font-family: Helvetica, 'Montserrat', sans-serif;
+  font-size: clamp(22px, 4vw, 32px);
+  font-weight: 700;
+  color: var(--black);
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  margin-bottom: 10px;
+}
+.section-title span { color: var(--teal); }
+.section-desc {
+  color: var(--text-soft);
+  font-size: 14px;
+  line-height: 1.7;
+  font-weight: 400;
+}
+
+/* ── CARD ── */
+.card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.card-teal {
+  background: var(--teal);
+  border: none;
+  color: var(--white);
+  border-radius: 4px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+.card-dark {
+  background: var(--dark);
+  border: none;
+  color: var(--white);
+  border-radius: 4px;
+  padding: 24px;
+  margin-bottom: 16px;
+}
+
+/* ── TEAL ACCENT LINE ── */
+.accent-line {
+  width: 40px; height: 3px;
+  background: var(--teal);
+  margin-bottom: 16px;
+}
+.accent-line-orange {
+  width: 40px; height: 3px;
+  background: var(--orange);
+  margin-bottom: 16px;
+}
+
+/* ── VERSE BOX ── */
+.verse-box {
+  border-left: 4px solid var(--teal);
+  padding: 16px 20px;
+  background: rgba(0,186,188,0.06);
+  margin-bottom: 24px;
+  border-radius: 0 4px 4px 0;
+}
+.verse-text { font-style: italic; font-size: 14px; color: var(--text-body); line-height: 1.7; margin-bottom: 6px; font-weight: 400; }
+.verse-ref { font-size: 11px; font-weight: 700; color: var(--teal); text-transform: uppercase; letter-spacing: 1.5px; }
+
+/* ── BUTTONS ── */
+.nav-row { display: flex; gap: 12px; margin-top: 28px; }
+.btn-back {
+  flex: 0 0 auto;
+  padding: 14px 22px;
+  border: 2px solid var(--border);
+  background: transparent;
+  border-radius: 4px;
+  font-family: 'Montserrat', Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  color: var(--dark);
+  cursor: pointer;
+  transition: all 0.2s;
+  text-transform: uppercase;
+}
+.btn-back:hover { border-color: var(--dark); }
+.btn-primary {
+  flex: 1;
+  padding: 16px 28px;
+  background: var(--teal);
+  color: var(--white);
+  border: none;
+  border-radius: 4px;
+  font-family: 'Montserrat', Helvetica, sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.btn-primary:hover { background: var(--teal-dark); transform: translateY(-1px); }
+.btn-orange {
+  background: var(--orange) !important;
+}
+.btn-orange:hover { background: #d94e22 !important; }
+
+/* ── VALIDATION ── */
+.validation-msg {
+  color: var(--orange);
+  font-size: 12.5px;
+  font-weight: 600;
+  margin-top: 12px;
+  display: none;
+  padding: 12px 16px;
+  background: rgba(241,93,44,0.07);
+  border-left: 3px solid var(--orange);
+  border-radius: 0 4px 4px 0;
+}
+
+/* ════════════════════════════════
+   STEP 0: INTRO
+   ════════════════════════════════ */
+.steps-list { display: flex; flex-direction: column; gap: 0; }
+.step-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+}
+.step-item:last-child { border-bottom: none; }
+.step-num {
+  flex-shrink: 0;
+  width: 32px; height: 32px;
+  background: var(--teal);
+  color: var(--white);
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px;
+  font-weight: 800;
+  font-family: Helvetica, sans-serif;
+}
+.step-body strong { display: block; font-size: 13.5px; font-weight: 700; color: var(--black); margin-bottom: 3px; }
+.step-body span { font-size: 13px; color: var(--text-soft); font-weight: 400; line-height: 1.5; }
+
+/* ════════════════════════════════
+   STEP 1: DISC TEST
+   ════════════════════════════════ */
+.disc-block {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-top: 4px solid var(--teal);
+  border-radius: 4px;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.disc-block-head {
+  background: var(--dark);
+  padding: 16px 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+.disc-letter-badge {
+  width: 44px; height: 44px;
+  background: var(--teal);
+  border-radius: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: Helvetica, 'Montserrat', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--white);
+  flex-shrink: 0;
+  letter-spacing: -1px;
+}
+.disc-block-title { color: var(--white); font-size: 14px; font-weight: 700; line-height: 1.35; text-transform: uppercase; letter-spacing: 0.5px; }
+.disc-block-title small { display: block; color: rgba(255,255,255,0.5); font-size: 11px; font-weight: 400; text-transform: none; letter-spacing: 0; margin-top: 2px; }
+.disc-questions-wrap { padding: 0 22px 16px; }
+.disc-q-row { padding: 16px 0; border-bottom: 1px solid var(--off-white); }
+.disc-q-row:last-child { border-bottom: none; }
+.disc-q-text { font-size: 14px; color: var(--black); font-weight: 500; margin-bottom: 12px; line-height: 1.5; }
+.disc-scale { display: flex; gap: 6px; }
+.disc-opt {
+  flex: 1;
+  border: 1.5px solid var(--border);
+  background: var(--off-white);
+  border-radius: 3px;
+  padding: 9px 3px 8px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 10.5px;
+  color: var(--text-soft);
+  font-weight: 600;
+  transition: all 0.18s;
+  line-height: 1.2;
+  letter-spacing: 0.2px;
+}
+.disc-opt:hover { border-color: var(--teal); color: var(--teal); background: rgba(0,186,188,0.06); }
+.disc-opt.selected { border-color: var(--teal); background: var(--teal); color: var(--white); }
+.disc-opt .dopt-num { display: block; font-size: 19px; font-weight: 700; font-family: Helvetica, sans-serif; margin-bottom: 3px; line-height: 1; }
+.disc-total-row {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 12px 22px 14px;
+  background: var(--off-white);
+  border-top: 1px solid var(--border);
+}
+.disc-total-label { font-size: 11px; font-weight: 700; color: var(--text-soft); text-transform: uppercase; letter-spacing: 1px; }
+.disc-total-val { font-family: Helvetica, 'Montserrat', sans-serif; font-size: 28px; font-weight: 700; color: #ccc; transition: color 0.3s; line-height: 1; }
+.disc-total-val.lit { color: var(--teal); }
+
+/* DISC preview */
+.disc-preview-box {
+  background: var(--dark);
+  border-radius: 4px;
+  padding: 20px 24px;
+  margin-top: 20px;
+  display: none;
+  align-items: center;
+  gap: 18px;
+  border-left: 4px solid var(--teal);
+}
+.disc-preview-box.show { display: flex; animation: fadeUp 0.3s ease; }
+.disc-preview-type { font-family: Helvetica, 'Montserrat', sans-serif; font-size: 48px; font-weight: 700; color: var(--teal); flex-shrink: 0; line-height: 1; letter-spacing: -2px; }
+.disc-preview-info {}
+.disc-preview-name { color: var(--white); font-size: 14px; font-weight: 700; margin-bottom: 4px; text-transform: uppercase; letter-spacing: 0.5px; }
+.disc-preview-sub { color: rgba(255,255,255,0.55); font-size: 12.5px; line-height: 1.5; }
+
+/* ════════════════════════════════
+   STEP 2: PROFILE
+   ════════════════════════════════ */
+.score-bars-card { background: var(--white); border: 1px solid var(--border); border-top: 4px solid var(--teal); border-radius: 4px; padding: 24px; margin-bottom: 16px; }
+.score-bars-card h3 { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-soft); margin-bottom: 18px; }
+.score-bar-row { display: flex; align-items: center; gap: 12px; margin-bottom: 12px; }
+.score-bar-row:last-child { margin-bottom: 0; }
+.sbl { flex-shrink: 0; width: 36px; height: 36px; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-family: Helvetica, 'Montserrat', sans-serif; font-size: 19px; font-weight: 700; color: var(--white); }
+.score-bar-track { flex: 1; background: var(--off-white); border-radius: 2px; height: 8px; overflow: hidden; }
+.score-bar-fill { height: 100%; border-radius: 2px; transition: width 0.7s ease; }
+.score-bar-val { font-family: Helvetica, 'Montserrat', sans-serif; font-size: 20px; font-weight: 700; min-width: 32px; text-align: right; flex-shrink: 0; }
+.score-bar-max { font-size: 11px; color: var(--text-soft); text-align: right; margin-top: 6px; font-weight: 500; }
+
+.desc-primary { background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 24px; margin-bottom: 16px; border-top: 4px solid var(--orange); }
+.desc-type-badge { display: inline-block; background: var(--dark); color: var(--white); font-size: 11px; font-weight: 700; padding: 5px 14px; border-radius: 2px; margin-bottom: 14px; text-transform: uppercase; letter-spacing: 1px; }
+.desc-primary h3 { font-size: 17px; font-weight: 700; color: var(--black); margin-bottom: 10px; letter-spacing: -0.2px; }
+.desc-primary p { font-size: 14px; color: var(--text-body); line-height: 1.72; font-weight: 400; }
+
+.combo-card { background: var(--off-white); border: 1px solid var(--border); border-radius: 4px; padding: 20px; margin-bottom: 14px; border-left: 4px solid var(--teal); }
+.combo-card h4 { font-size: 13.5px; font-weight: 700; color: var(--black); margin-bottom: 8px; text-transform: uppercase; letter-spacing: 0.3px; }
+.combo-card p { font-size: 13.5px; color: var(--text-body); line-height: 1.65; }
+.combo-ref { font-size: 11px; color: var(--teal); font-weight: 700; margin-top: 8px; letter-spacing: 0.5px; }
+
+.tips-card { background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 22px; margin-bottom: 14px; }
+.tips-card h3 { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-soft); margin-bottom: 14px; }
+.tip-item { display: flex; align-items: flex-start; gap: 10px; font-size: 13.5px; color: var(--text-body); line-height: 1.55; margin-bottom: 9px; font-weight: 400; }
+.tip-item:last-child { margin-bottom: 0; }
+.tip-arrow { flex-shrink: 0; color: var(--teal); font-weight: 700; font-size: 14px; margin-top: 1px; }
+
+/* ════════════════════════════════
+   STEP 3: GIFTS
+   ════════════════════════════════ */
+.q-mini-prog { margin-bottom: 22px; }
+.q-mini-prog-row { display: flex; align-items: center; justify-content: space-between; margin-bottom: 7px; }
+.q-mini-prog-label { font-size: 11px; font-weight: 700; color: var(--text-soft); text-transform: uppercase; letter-spacing: 1px; }
+.q-mini-prog-count strong { color: var(--black); }
+.q-mini-prog-count { font-size: 12px; color: var(--text-soft); font-weight: 600; }
+.q-mini-bar-bg { background: var(--border); border-radius: 2px; height: 4px; overflow: hidden; }
+.q-mini-bar-fill { background: var(--teal); height: 100%; border-radius: 2px; transition: width 0.3s; }
+
+.q-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 18px 20px 16px;
+  margin-bottom: 10px;
+}
+.q-num { font-size: 10px; font-weight: 700; color: var(--teal); letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 7px; }
+.q-text { font-size: 14px; color: var(--black); font-weight: 500; line-height: 1.52; margin-bottom: 13px; }
+.q-opts { display: flex; gap: 6px; }
+.q-opt {
+  flex: 1;
+  border: 1.5px solid var(--border);
+  background: var(--off-white);
+  border-radius: 3px;
+  padding: 10px 4px;
+  text-align: center;
+  cursor: pointer;
+  font-size: 11px;
+  color: var(--text-soft);
+  font-weight: 600;
+  transition: all 0.18s;
+  line-height: 1.25;
+  letter-spacing: 0.2px;
+}
+.q-opt:hover { border-color: var(--teal); color: var(--teal); background: rgba(0,186,188,0.06); }
+.q-opt.selected { border-color: var(--teal); background: var(--teal); color: var(--white); }
+.q-opt .opt-n { display: block; font-size: 19px; font-weight: 700; font-family: Helvetica, sans-serif; margin-bottom: 3px; line-height: 1; }
+
+/* ════════════════════════════════
+   STEP 4: RESULTS
+   ════════════════════════════════ */
+.result-hero {
+  background: var(--teal);
+  border-radius: 4px;
+  padding: 36px 28px;
+  margin-bottom: 24px;
+  position: relative;
+  overflow: hidden;
+}
+.result-hero::after {
+  content: '';
+  position: absolute;
+  right: -40px; bottom: -40px;
+  width: 180px; height: 180px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+  pointer-events: none;
+}
+.result-hero-label { font-size: 10px; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: rgba(255,255,255,0.7); margin-bottom: 10px; }
+.result-hero-title { font-family: Helvetica, 'Montserrat', sans-serif; color: var(--white); font-size: clamp(20px, 4vw, 28px); font-weight: 700; line-height: 1.2; margin-bottom: 7px; letter-spacing: -0.3px; }
+.result-hero-title span { color: var(--black); opacity: 0.8; }
+.result-hero-sub { color: rgba(255,255,255,0.75); font-size: 13.5px; font-weight: 400; }
+
+.result-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+.result-stat { background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 20px; text-align: center; border-top: 3px solid var(--teal); }
+.result-stat-val { font-family: Helvetica, 'Montserrat', sans-serif; font-size: 26px; font-weight: 700; color: var(--teal); line-height: 1.1; letter-spacing: -1px; }
+.result-stat-lbl { font-size: 10px; font-weight: 700; color: var(--text-soft); text-transform: uppercase; letter-spacing: 1.5px; margin-top: 5px; }
+
+.gifts-summary { background: var(--white); border: 1px solid var(--border); border-radius: 4px; padding: 24px; margin-bottom: 24px; border-top: 3px solid var(--dark); }
+.gifts-summary h3 { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--text-soft); margin-bottom: 18px; }
+.top-gift-row { display: flex; align-items: center; gap: 12px; margin-bottom: 11px; }
+.top-gift-row:last-child { margin-bottom: 0; }
+.gift-rank-num { flex-shrink: 0; width: 26px; height: 26px; background: var(--dark); color: var(--white); border-radius: 2px; font-size: 12px; font-weight: 700; display: flex; align-items: center; justify-content: center; font-family: Helvetica, sans-serif; }
+.top-gift-row:first-child .gift-rank-num { background: var(--teal); }
+.gift-name-full { font-size: 13.5px; font-weight: 600; color: var(--black); flex: 1; }
+.gift-bar-bg { width: 80px; height: 5px; background: var(--off-white); border-radius: 2px; overflow: hidden; flex-shrink: 0; border: 1px solid var(--border); }
+.gift-bar-fill { height: 100%; background: var(--teal); border-radius: 2px; }
+.gift-score-val { font-size: 12px; font-weight: 700; color: var(--text-soft); width: 34px; text-align: right; flex-shrink: 0; font-family: Helvetica, sans-serif; }
+
+.teams-section-label { margin-bottom: 20px; }
+.teams-grid { display: flex; flex-direction: column; gap: 12px; margin-bottom: 26px; }
+.team-card {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.team-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+.team-card.rank-1 { border-top: 4px solid var(--teal); border-color: var(--teal); }
+.team-card.rank-1 .team-badge { background: var(--teal); }
+.team-badge { flex-shrink: 0; width: 44px; height: 44px; background: var(--dark); border-radius: 3px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+.team-info { flex: 1; min-width: 0; }
+.team-rank { font-size: 10px; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; color: var(--teal); margin-bottom: 4px; }
+.team-card.rank-1 .team-rank { color: var(--teal); }
+.team-name { font-family: Helvetica, 'Montserrat', sans-serif; font-size: 16px; font-weight: 700; color: var(--black); margin-bottom: 6px; letter-spacing: -0.2px; }
+.team-desc { font-size: 13px; color: var(--text-soft); line-height: 1.6; margin-bottom: 10px; font-weight: 400; }
+.team-gifts { display: flex; flex-wrap: wrap; gap: 5px; }
+.gift-tag { font-size: 10.5px; font-weight: 700; background: var(--off-white); color: var(--dark); padding: 3px 9px; border-radius: 2px; border: 1px solid var(--border); text-transform: uppercase; letter-spacing: 0.3px; }
+.match-score { flex-shrink: 0; text-align: center; padding-top: 2px; }
+.match-pct { font-family: Helvetica, 'Montserrat', sans-serif; font-size: 26px; font-weight: 700; color: var(--dark); line-height: 1; letter-spacing: -1px; }
+.team-card.rank-1 .match-pct { color: var(--teal); }
+.match-pct-label { font-size: 9px; color: var(--text-soft); font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; }
+
+.cta-card { background: var(--dark); border-radius: 4px; padding: 28px; margin-bottom: 16px; }
+.cta-card h3 { font-size: 14px; font-weight: 700; color: var(--white); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 10px; }
+.cta-card p { font-size: 13.5px; color: rgba(255,255,255,0.65); line-height: 1.65; }
+
+.restart-row { text-align: center; margin-top: 16px; }
+.btn-restart { background: none; border: none; color: var(--text-soft); font-size: 12px; font-weight: 600; cursor: pointer; font-family: 'Montserrat', Helvetica, sans-serif; text-decoration: underline; padding: 8px; letter-spacing: 0.5px; }
+.btn-restart:hover { color: var(--teal); }
+
+/* FOOTER */
+.page-footer { background: var(--black); text-align: center; padding: 24px; color: rgba(255,255,255,0.4); font-size: 11px; font-weight: 500; line-height: 1.7; letter-spacing: 0.3px; margin-top: 40px; }
+.page-footer span { color: var(--teal); }
+
+@media (max-width: 520px) {
+  .disc-scale { flex-wrap: wrap; }
+  .disc-opt { min-width: calc(33.3% - 5px); flex: none; }
+  .q-opts { flex-direction: column; }
+  .q-opt { display: flex; align-items: center; gap: 14px; text-align: left; padding: 12px 16px; }
+  .q-opt .opt-n { font-size: 17px; min-width: 22px; }
+  .team-card { flex-direction: column; }
+  .match-score { align-self: flex-end; margin-top: -48px; }
+  .result-cols { grid-template-columns: 1fr; }
+  .header-inner { gap: 14px; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo-mark">
+      <!-- Northwood cross/pillar icon approximation -->
+      <svg viewBox="0 0 30 30" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="15" cy="15" r="14" stroke="white" stroke-width="1.5" fill="none"/>
+        <line x1="15" y1="4" x2="15" y2="26" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="9" y1="12" x2="21" y2="12" stroke="white" stroke-width="2.2" stroke-linecap="round"/>
+        <line x1="11" y1="18" x2="15" y2="26" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+        <line x1="19" y1="18" x2="15" y2="26" stroke="white" stroke-width="1.6" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="header-text">
+      <div class="logo-name">Iglesia Northwood</div>
+      <h1>Descubre Tu<br><span>Equipo Ideal</span></h1>
+      <p>Completa el assessment de personalidad y dones espirituales para encontrar el ministerio donde Dios te diseñó para servir.</p>
+    </div>
+  </div>
+</header>
+
+<!-- PROGRESS -->
+<div class="progress-wrap">
+  <div class="progress-inner">
+    <div class="progress-labels">
+      <span class="progress-label active" id="lbl0">Inicio</span>
+      <span class="progress-label" id="lbl1">Personalidad</span>
+      <span class="progress-label" id="lbl2">Tu Perfil</span>
+      <span class="progress-label" id="lbl3">Dones</span>
+      <span class="progress-label" id="lbl4">Resultados</span>
+    </div>
+    <div class="progress-bar-bg">
+      <div class="progress-bar-fill" id="progressFill"></div>
+    </div>
+  </div>
+</div>
+
+<main>
+
+<!-- ══ SEC 0: INTRO ══ -->
+<div class="section active" id="sec0">
+  <div class="section-header">
+    <div class="section-label">Bienvenido/a</div>
+    <h2 class="section-title">Diseño revela <span>destino</span></h2>
+    <p class="section-desc">Dios te creó de manera única con propósito. Esta herramienta combina dos assessments para ayudarte a descubrir en qué equipo de Iglesia Northwood puedes hacer la mayor diferencia.</p>
+  </div>
+
+  <div class="verse-box">
+    <p class="verse-text">"Porque somos hechura de Dios, creados en Cristo Jesús para buenas obras, las cuales Dios dispuso de antemano a fin de que las pongamos en práctica."</p>
+    <p class="verse-ref">Efesios 2:10</p>
+  </div>
+
+  <div class="card">
+    <div class="accent-line"></div>
+    <p style="font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-soft);margin-bottom:16px;">Cómo funciona</p>
+    <div class="steps-list">
+      <div class="step-item">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <strong>Assessment de Personalidad DISC</strong>
+          <span>4 secciones · 5 afirmaciones c/u · Escala 1–5 · ~3 minutos</span>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <strong>Lee tu perfil de personalidad</strong>
+          <span>Descubre tu tipo dominante y la combinación con tu segunda tendencia.</span>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <strong>Assessment de Dones Espirituales</strong>
+          <span>72 preguntas · Escala 1–3 · ~6 minutos</span>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <strong>Resultados personalizados</strong>
+          <span>Tus equipos de Northwood más compatibles según personalidad + dones.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-row">
+    <button class="btn-primary btn-orange" onclick="goTo(1)">COMENZAR →</button>
+  </div>
+</div>
+
+<!-- ══ SEC 1: DISC TEST ══ -->
+<div class="section" id="sec1">
+  <div class="section-header">
+    <div class="section-label">Paso 1 · Personalidad DISC</div>
+    <h2 class="section-title">Assessment de <span>Personalidad</span></h2>
+    <p class="section-desc">Para cada afirmación selecciona el número que mejor te describe.<br><strong style="color:var(--black);">1 = Nunca &nbsp;·&nbsp; 3 = A Veces &nbsp;·&nbsp; 5 = Siempre</strong></p>
+  </div>
+  <div id="discBlocks"></div>
+  <div class="disc-preview-box" id="discPreview">
+    <div class="disc-preview-type" id="prevType">--</div>
+    <div class="disc-preview-info">
+      <div class="disc-preview-name" id="prevName">Tu tipo predominante</div>
+      <div class="disc-preview-sub" id="prevSub">Continúa para ver tu descripción completa.</div>
+    </div>
+  </div>
+  <p class="validation-msg" id="disc1Val">Por favor responde todas las preguntas antes de continuar.</p>
+  <div class="nav-row">
+    <button class="btn-back" onclick="goTo(0)">← ATRÁS</button>
+    <button class="btn-primary" onclick="submitDisc()">VER MI PERFIL →</button>
+  </div>
+</div>
+
+<!-- ══ SEC 2: PROFILE ══ -->
+<div class="section" id="sec2">
+  <div class="section-header">
+    <div class="section-label">Tu Perfil de Personalidad</div>
+    <h2 class="section-title" id="profileTitle">Tu Tipo</h2>
+    <p class="section-desc">Así es como Dios te diseñó. Estas fortalezas son exactamente lo que el equipo correcto necesita.</p>
+  </div>
+  <div id="profileContent"></div>
+  <div class="nav-row">
+    <button class="btn-back" onclick="goTo(1)">← ATRÁS</button>
+    <button class="btn-primary btn-orange" onclick="goTo(3)">DONES ESPIRITUALES →</button>
+  </div>
+</div>
+
+<!-- ══ SEC 3: GIFTS ══ -->
+<div class="section" id="sec3">
+  <div class="section-header">
+    <div class="section-label">Paso 2 · Dones Espirituales</div>
+    <h2 class="section-title">Assessment de <span>Dones Espirituales</span></h2>
+    <p class="section-desc">Lee cada afirmación y selecciona con qué frecuencia te describe.<br><strong style="color:var(--black);">1 = Casi nunca &nbsp;·&nbsp; 2 = A veces &nbsp;·&nbsp; 3 = Casi siempre</strong></p>
+  </div>
+  <div class="q-mini-prog">
+    <div class="q-mini-prog-row">
+      <span class="q-mini-prog-label">Progreso</span>
+      <span class="q-mini-prog-count"><strong id="answeredCount">0</strong> / 72 respondidas</span>
+    </div>
+    <div class="q-mini-bar-bg"><div class="q-mini-bar-fill" id="qProgFill" style="width:0%"></div></div>
+  </div>
+  <div id="questionsContainer"></div>
+  <p class="validation-msg" id="giftsVal">Por favor responde todas las preguntas antes de continuar.</p>
+  <div class="nav-row">
+    <button class="btn-back" onclick="goTo(2)">← ATRÁS</button>
+    <button class="btn-primary btn-orange" onclick="calculateResults()">VER MIS RESULTADOS →</button>
+  </div>
+</div>
+
+<!-- ══ SEC 4: RESULTS ══ -->
+<div class="section" id="sec4">
+  <div id="resultsContent"></div>
+</div>
+
+</main>
+
+<footer class="page-footer">
+  <span>IGLESIA NORTHWOOD</span> · Haremos todo menos pecar por alcanzar las almas<br>
+  Basado en el material Growth Track de Church of the Highlands · Adaptado para nuestra comunidad
+</footer>
+
+<script>
+// ═══════════════════════════════════════
+// DISC DATA
+// ═══════════════════════════════════════
+const DISC_SECTIONS = [
+  {
+    letter:'D', subtitle:'Dominante / Decisivo',
+    questions:[
+      'Soy asertivo/a, exigente y decisivo/a.',
+      'Me gusta hacer varias tareas a la vez.',
+      'Prospero en un entorno basado en desafíos.',
+      'Pienso en las tareas más que en los demás o en mí mismo/a.',
+      'Estoy motivado/a por el logro y la autoridad.'
+    ]
+  },
+  {
+    letter:'I', subtitle:'Influyente / Inspirador',
+    questions:[
+      'Me gusta influir e inspirar a otras personas.',
+      'Soy optimista sobre los demás.',
+      'Tiendo a ser el alma de la fiesta.',
+      'Pienso en cómo motivar a la gente.',
+      'Me motiva el reconocimiento y la aprobación.'
+    ]
+  },
+  {
+    letter:'S', subtitle:'Estable / Constante',
+    questions:[
+      'Prospero en ambientes consistentes y predecibles.',
+      'Prefiero los detalles a las generalizaciones.',
+      'Disfruto de pequeños grupos de personas.',
+      'Prefiero ser miembro de un equipo que liderar.',
+      'Me motiva la estabilidad y el apoyo.'
+    ]
+  },
+  {
+    letter:'C', subtitle:'Concienzudo / Analítico',
+    questions:[
+      'Normalmente evito los grandes riesgos.',
+      'Me encantan las tareas, el orden y los detalles.',
+      'Tengo razón la mayor parte del tiempo.',
+      'Cumplo con reglas claramente definidas.',
+      'Me motiva la calidad y la corrección.'
+    ]
+  }
+];
+const SCALE = ['Nunca','Rara Vez','A Veces','A Menudo','Siempre'];
+
+const DISC_DESC = {
+  D:{
+    name:'Dominante',
+    main:'Somos directos y decisivos. Somos tomadores de riesgos y solucionadores de problemas. Estamos más preocupados por completar tareas y ganar que por obtener la aprobación de la gente. Aunque el impulso interno tiende a hacernos insensibles a quienes nos rodean, los "D" no tienen miedo de desafiar el statu quo y prosperamos cuando se trata de desarrollar cosas nuevas. Le damos gran valor al tiempo y utilizamos nuestro pensamiento innovador para realizar tareas difíciles y conquistar desafíos.',
+    combos:{
+      I:{lbl:'D/I', title:'Conclusivos y Curiosos', desc:'Ponemos énfasis en el resultado final y trabajamos duro para alcanzar nuestras metas. Somos más decididos que inspiradores, sin embargo, nuestras altas expectativas generalmente hacen que tengamos un gran impacto, motivando a otros a seguirnos. Disfrutamos realizar tareas a través de una gran cantidad de personas.', ref:'Josué (Jos. 1) · Noé (Gén. 6–9) · Sara (Gén. 16)'},
+      S:{lbl:'D/S', title:'Triunfadores Perseverantes', desc:'Somos más activos que pasivos, pero poseemos una sensibilidad tranquila y firmeza que nos convierte en buenos líderes. Nos esforzamos por lograr objetivos con una determinación feroz que proviene de un fuerte impulso interno.', ref:'Daniel (Dan. 1–6) · Marta (Lucas 10:38–42) · Job (Sant. 5:11)'},
+      C:{lbl:'D/C', title:'Retadores Estratégicos', desc:'Estar a cargo es importante para nosotros, pero nos importa poco lo que piensen los demás siempre y cuando hagamos el trabajo. Tenemos mucha previsión y examinamos todas las vías para encontrar la mejor solución. Preferimos trabajar solos y podemos ser excelentes administradores.', ref:'Natán (2 Sam. 12) · Malaquías 4 · Nahum 1–3'}
+    }
+  },
+  I:{
+    name:'Influyente',
+    main:'Somos inspiradores e impresionantes. Entusiastas, optimistas, impulsivos y emocionales: tendemos a ser creativos para resolver problemas y excelentes animadores. A menudo tenemos una gran cantidad de amigos, pero podemos preocuparnos más por la aprobación y la popularidad que por obtener resultados. Nuestro sentido del humor positivo nos ayuda a negociar conflictos. Valoramos mucho el contacto humano y la conexión.',
+    combos:{
+      D:{lbl:'I/D', title:'Persuasivos y Enérgicos', desc:'Disfrutamos de los grupos grandes y usamos nuestro poder de influencia para lograr el respeto y convencer a la gente de que siga nuestro ejemplo. Formamos líderes inspiradores y sabemos cómo obtener resultados de y a través de las personas.', ref:'Juan el Bautista (Lucas 3) · Pedro (Mat. 16, 26) · Rebeca (Gén. 24)'},
+      S:{lbl:'I/S', title:'Consejeros Influyentes', desc:'Amamos a las personas, y no es de extrañar que las personas nos amen. Vivimos para complacer y servir, y tendemos a ser buenos oyentes. Podemos estar en el centro o detrás de escena con igual eficacia, y brillamos cuando se trata de influir y ayudar a los demás.', ref:'Bernabé (Hech. 4, 9, 11–15) · Eliseo (1 Rey. 19) · Nicodemo (Juan 3, 7, 19)'},
+      C:{lbl:'I/C', title:'Evaluadores Inspiradores', desc:'Somos excelentes comunicadores que combinan conciencia y aprecio por las personas. Nos destacamos en la determinación de formas de mejorar la producción. Este tipo a menudo posee un don para la enseñanza; generalmente somos confiables al prestar atención a los detalles.', ref:'Miriam (Éxodo 15) · Esdras (Esdras 7, 8) · Mujer Sunamita (2 Rey. 4)'}
+    }
+  },
+  S:{
+    name:'Estable',
+    main:'Somos estables y más reservados. No nos gusta el cambio y prosperamos en entornos seguros y libres de amenazas. A menudo somos amables y comprensivos, así como buenos oyentes y trabajadores leales que están felices de hacer el mismo trabajo de manera constante. Con una increíble capacidad para perdonar, los "S" confiables tienden a ser los mejores amigos. Nos sentimos más valorados cuando verdaderamente hemos ayudado a alguien.',
+    combos:{
+      D:{lbl:'S/D', title:'Líderes Silenciosos', desc:'Se puede contar con nosotros para hacer el trabajo. Nos desempeñamos mejor en grupos pequeños y no disfrutamos hablar frente a multitudes. Los desafíos nos motivan, especialmente los que permiten un enfoque sistemático. Tendemos a ser decididos y perseverantes.', ref:'Marta (Lucas 10:38–42) · Job (Job 1:5; Sant. 5:11)'},
+      I:{lbl:'S/I', title:'Consejeros Cálidos', desc:'Mostramos calidez y sensibilidad. Tolerantes y perdonadores, tenemos muchos amigos porque aceptamos y representamos bien a los demás. Amables y considerados, incluimos a otros e inspiramos a las personas a seguirnos.', ref:'María Magdalena (Lucas 7) · Bernabé (Hech. 4) · Eliseo (1 Rey. 19)'},
+      C:{lbl:'S/C', title:'Diplomáticos Constantes', desc:'Somos orientados a los detalles. Estables y contemplativos, nos gusta considerar la evidencia y descubrir los hechos para llegar a una conclusión lógica. Podemos ser pacificadores y miembros leales del equipo.', ref:'Moisés (Éxodo 3, 4, 20) · Juan (Juan 19:26–27) · Eliezer (Gén. 24)'}
+    }
+  },
+  C:{
+    name:'Concienzudo',
+    main:'Somos cumplidores y analíticos. Las líneas de pensamiento cuidadosas y lógicas nos impulsan hacia adelante, y la precisión es una prioridad máxima. Mantenemos altos estándares y valoramos los enfoques sistemáticos para la resolución de problemas. Somos minuciosos en todas las actividades y podemos aportar un elemento muy esmerado y ecuánime al equipo que proporcionará una base sólida. Valoramos estar en lo correcto.',
+    combos:{
+      I:{lbl:'C/I', title:'Analíticos Comunicativos', desc:'Estamos atentos a los detalles. Tendemos a impresionar a los demás haciendo las cosas bien y estabilizando las situaciones. A menudo somos excelentes jueces de carácter y confiamos fácilmente en aquellos que cumplen con nuestros estándares.', ref:'Miriam (Éxodo 15) · Esdras (Esdras 7, 8)'},
+      S:{lbl:'C/S', title:'Sistemáticos y Estables', desc:'Tendemos a hacer una cosa a la vez y hacerlo bien. Reservados y cautelosos, preferimos trabajar entre bastidores para mantener el rumbo. Precisos al pie de la letra, exigimos minuciosamente la precisión.', ref:'Ester (Ester 4) · Zacarías (Lucas 1) · José (Mat. 1:1–23)'},
+      D:{lbl:'C/D', title:'Diseñadores Cautelosos', desc:'Constantemente orientados a las tareas y muy conscientes de los problemas. Debido a nuestras habilidades administrativas, podemos hacer realidad los planes de cambio y mejoras. A menudo sentimos que somos los únicos que podemos hacer el trabajo de la manera correcta.', ref:'Bezalel (Éxodo 35–36) · Jocabed (Éxodo 1–2) · Jetro (Éxodo 2, 18)'}
+    }
+  }
+};
+
+const TIPS = {
+  D:['Escuchar atentamente a los demás.','Apoyar a otros miembros del equipo.','Invertir en relaciones personales.','Equilibrar las tendencias controladoras y dominantes.','Valorar las opiniones y sentimientos de los demás.'],
+  I:['Ser consciente de las tareas que deben realizarse.','Equilibrar tus emociones, palabras y acciones.','Recordar considerar los detalles y los hechos.','Reducir la velocidad cuando sea necesario para los demás.','Elegir la toma de decisiones reflexiva en vez de la impulsiva.'],
+  S:['Tomar la iniciativa con más frecuencia.','Practicar la flexibilidad ante los cambios.','Ver la confrontación de una manera constructiva.','Ser directo/a en tus interacciones cuando sea necesario.','Darte cuenta de que el cambio puede ser saludable.'],
+  C:['Ser decisivo/a cuando sea necesario.','Cultivar las relaciones personales.','Estar abierto/a a las ideas y métodos de los demás.','Equilibrar tu enfoque entre los hechos y las personas.','Ayudar a otros a lograr sus metas, no solo las tuyas.']
+};
+
+// ═══════════════════════════════════════
+// GIFTS DATA
+// ═══════════════════════════════════════
+const QUESTIONS = [
+  "Me gusta organizar servicios y eventos.",
+  "Estoy interesado/a en iniciar nuevas iglesias.",
+  "Disfruto trabajar con mis manos.",
+  "Puedo notar cuando alguien no es sincero/a.",
+  "Oro por los perdidos diariamente.",
+  "Animar a los demás es una alta prioridad en mi vida.",
+  "Creer en Dios para nuestras necesidades diarias es importante para mí.",
+  "Influir en otros para el Reino de Dios a través de las finanzas es extremadamente importante para mí.",
+  "Busco oportunidades para orar por los enfermos.",
+  "Disfruto haciendo pequeñas cosas que otros normalmente no disfrutan.",
+  "A menudo tengo gente en mi casa.",
+  "Disfruto pasar horas en oración por otras personas.",
+  "La educación es muy importante para mí.",
+  "Tiendo a motivar a otros a involucrarse.",
+  "Me duele cuando veo que otros sufren.",
+  "Creo que Dios me usará para realizar Sus milagros.",
+  "Disfruto compartir el Evangelio con otros grupos de personas y nacionalidades.",
+  "He dedicado tiempo considerable a dominar mi voz y/o instrumento musical.",
+  "Cuidar de los que sufren es una de mis principales prioridades.",
+  "Me frustro cuando la gente peca a sabiendas.",
+  "Disfruto sirviendo detrás de escena.",
+  "Me gusta crear bosquejos de la Biblia.",
+  "Dios me ha usado para interpretar lo que alguien que habla en lenguas está diciendo.",
+  "Disfruto el libro de Proverbios más que cualquier otro libro de la Biblia.",
+  "Me apasiona manejar los detalles.",
+  "Me gusta ayudar a iniciar nuevos proyectos ministeriales.",
+  "Me considero artesano/a.",
+  "Siento cuando las situaciones espiritualmente no son sanas.",
+  "Me motiva mucho ver personas que no conocen a Dios ser salvas.",
+  "Parezco ser cariñoso/a y afectuoso/a.",
+  "Me emociona pedirle a Dios una lista de cosas aparentemente imposibles.",
+  "Encuentro maneras de dar ofrendas por encima de mi diezmo.",
+  "Creo que la sanidad milagrosa es posible y todavía ocurre.",
+  "Ayudar a los demás es una de mis mayores motivaciones.",
+  "Para mí es importante crear un ambiente cálido y acogedor.",
+  "Tengo la carga de orar por las situaciones que afectan al mundo.",
+  "La gente viene a mí para aprender más sobre Dios y la Biblia.",
+  "Prefiero tomar la iniciativa siempre que sea posible.",
+  "Soy muy sensible a las historias tristes.",
+  "Los milagros a menudo suceden cuando estoy cerca.",
+  "La idea de vivir en otro país en beneficio del Evangelio es apasionante para mí.",
+  "Deseo servir a la iglesia a través de la adoración.",
+  "Disfruto conectando, cuidando y entrenando a otros.",
+  "Es importante para mí confrontar a alguien acerca de un pecado en su vida.",
+  "Me molesta cuando la gente se sienta y no hace nada.",
+  "Comparto la verdad bíblica con otros para ayudarlos a crecer.",
+  "Oro en lenguas todos los días.",
+  "Cuando estudio las Escrituras, recibo perspectivas únicas de Dios.",
+  "Crear una lista de tareas es fácil y divertido para mí.",
+  "Me atraen los ministerios que inician nuevas iglesias.",
+  "Construir algo con mis manos me satisface mucho.",
+  "Puedo identificar asuntos o problemas rápidamente.",
+  "Compartir el Evangelio con alguien que no conozco es emocionante y natural para mí.",
+  "Busco maneras de animar a otras personas.",
+  "Confío en que Dios me respalda en cada situación.",
+  "Quiero ganar más dinero para poder dar más.",
+  "Dios me ha usado para traer sanidad a los que están enfermos.",
+  "Ser parte del proceso me llena.",
+  "Tiendo a hacer que los extraños se sientan como en casa.",
+  "La gente a menudo me pide que ore por ellos.",
+  "Disfruto conocer detalles bíblicos y ayudar a otros a entenderlos también.",
+  "Delego responsabilidades para cumplir tareas.",
+  "Me motiva ayudar a la gente en necesidad.",
+  "Tengo hambre constante de ver el poder milagroso de Dios.",
+  "Me enfoco mucho en alcanzar el mundo para Cristo.",
+  "Obtengo mi más profunda satisfacción dirigiendo a otros en la adoración vocal o instrumental.",
+  "Disfruto ayudar a las personas que están pasando por un momento difícil.",
+  "Me gusta escuchar predicaciones apasionadas y claras de la Palabra de Dios.",
+  "Me gusta hacer pequeñas cosas que otros pasan por alto.",
+  "Prefiero enseñar y estudiar la Biblia por temas en lugar de versículo por versículo.",
+  "Orar en lenguas es alentador e importante para mí.",
+  "Cuando me enfrento a una dificultad, tiendo a tomar decisiones sabias."
+];
+const GIFT_KEYS = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X'];
+const GIFT_NAMES = {
+  A:'Administración',B:'Apostolado',C:'Artesanía',D:'Discernimiento',E:'Evangelismo',
+  F:'Exhortación',G:'Fe',H:'Dar',I:'Sanidad',J:'Ayuda',K:'Hospitalidad',
+  L:'Intercesión',M:'Conocimiento',N:'Liderazgo',O:'Misericordia',P:'Milagros',
+  Q:'Misionero/a',R:'Música / Adoración',S:'Pastoreo',T:'Profecía',U:'Servicio',
+  V:'Enseñanza',W:'Lenguas e Interpretación',X:'Sabiduría'
+};
+const TEAMS = [
+  {id:'propresenter',emoji:'🎛️',name:'ProPresenter (Media)',desc:'Mantiene los servicios funcionando sin problemas con organización y confiabilidad detrás de escena.',gifts:['A','J','U'],personality:['C','D']},
+  {id:'luces',emoji:'💡',name:'Luces (LightKey)',desc:'Usa habilidad artística para crear una atmósfera que apoya la adoración y la Palabra.',gifts:['C','J','U'],personality:['I','C']},
+  {id:'worship',emoji:'🎶',name:'Adoración – Vocales / Músicos',desc:'Lleva a la iglesia a la presencia de Dios a través de la música y la expresión artística.',gifts:['R','F','T'],personality:['I','D']},
+  {id:'sound',emoji:'🎚️',name:'Técnico de Sonido',desc:'Administra sistemas complejos para que el mensaje y la adoración sean escuchados con claridad.',gifts:['A','U','M'],personality:['C','S']},
+  {id:'foto',emoji:'📸',name:'Fotografía',desc:'Cuenta la historia del trabajo de Dios en la iglesia a través de imágenes que inspiran y conectan.',gifts:['C','E','A'],personality:['I','C']},
+  {id:'kids',emoji:'👶',name:'Northwood Kids (Escuela Dominical)',desc:'Explica la Palabra de Dios sencillamente, cuida a los niños y discipula a la siguiente generación.',gifts:['V','S','O'],personality:['S','I']},
+  {id:'ujieres',emoji:'🤝',name:'Ujieres',desc:'Crea orden y da bienvenida a las personas para que puedan enfocarse en Dios.',gifts:['K','U','J'],personality:['S','D']},
+  {id:'anfitriones',emoji:'🏠',name:'Anfitriones',desc:'Ser el "primer rostro" de la iglesia, conectar con los visitantes y ayudarlos a sentirse en casa.',gifts:['K','E','F'],personality:['I','S']},
+  {id:'bienvenida',emoji:'👋',name:'Equipo de Bienvenida',desc:'Saludar, animar y extender calidez para que las personas sientan el amor de Dios de inmediato.',gifts:['K','F','O'],personality:['I','S']},
+  {id:'grupos',emoji:'💬',name:'Grupos Pequeños',desc:'Liderar y facilitar comunidad donde las personas se conectan, crecen y se apoyan mutuamente.',gifts:['S','V','N','F'],personality:['I','D','S']}
+];
+
+// ═══════════════════════════════════════
+// STATE
+// ═══════════════════════════════════════
+let currentSec = 0;
+let discAnswers = Array(4).fill(null).map(()=>Array(5).fill(null));
+let discPrimary = null, discSecondary = null;
+let giftAnswers = new Array(72).fill(null);
+
+// ═══════════════════════════════════════
+// BUILD DISC
+// ═══════════════════════════════════════
+function buildDisc() {
+  const wrap = document.getElementById('discBlocks');
+  wrap.innerHTML = '';
+  DISC_SECTIONS.forEach((sec, si) => {
+    const block = document.createElement('div');
+    block.className = 'disc-block';
+    const total = discAnswers[si].reduce((s,v)=>s+(v||0),0);
+    block.innerHTML = `
+      <div class="disc-block-head">
+        <div class="disc-letter-badge">${sec.letter}</div>
+        <div class="disc-block-title">Sección ${si+1} — Tipo ${sec.letter}<small>${sec.subtitle}</small></div>
+      </div>
+      <div class="disc-questions-wrap">
+        ${sec.questions.map((q,qi)=>`
+          <div class="disc-q-row" id="dq${si}_${qi}">
+            <div class="disc-q-text">${q}</div>
+            <div class="disc-scale">
+              ${[1,2,3,4,5].map(v=>`
+                <div class="disc-opt${discAnswers[si][qi]===v?' selected':''}" onclick="setDisc(${si},${qi},${v},this)" title="${SCALE[v-1]}">
+                  <span class="dopt-num">${v}</span>${SCALE[v-1]}
+                </div>`).join('')}
+            </div>
+          </div>`).join('')}
+      </div>
+      <div class="disc-total-row">
+        <span class="disc-total-label">Total Sección ${si+1}</span>
+        <span class="disc-total-val${total>0?' lit':''}" id="dt${si}">${total>0?total:'—'}</span>
+      </div>`;
+    wrap.appendChild(block);
+  });
+}
+
+function setDisc(si, qi, val, el) {
+  discAnswers[si][qi] = val;
+  document.getElementById(`dq${si}_${qi}`).querySelectorAll('.disc-opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  const t = discAnswers[si].reduce((s,v)=>s+(v||0),0);
+  const td = document.getElementById(`dt${si}`);
+  td.textContent = t; td.classList.add('lit');
+  liveDiscPreview();
+  document.getElementById('disc1Val').style.display='none';
+}
+
+function liveDiscPreview() {
+  const complete = discAnswers.every(sec=>sec.every(v=>v!==null));
+  if (!complete) return;
+  const tots = discAnswers.map(sec=>sec.reduce((s,v)=>s+(v||0),0));
+  const order = ['D','I','S','C'].map((l,i)=>({l,t:tots[i]})).sort((a,b)=>b.t-a.t);
+  discPrimary = order[0].l;
+  discSecondary = order[1].l;
+  const names={D:'Dominante',I:'Influyente',S:'Estable',C:'Concienzudo/a'};
+  document.getElementById('prevType').textContent = discPrimary+discSecondary;
+  document.getElementById('prevName').textContent = `Tipo Principal: ${names[discPrimary]}`;
+  document.getElementById('prevSub').textContent = `Segunda tendencia: ${names[discSecondary]}. Continúa para ver tu perfil completo.`;
+  document.getElementById('discPreview').classList.add('show');
+}
+
+function submitDisc() {
+  const ok = discAnswers.every(sec=>sec.every(v=>v!==null));
+  if (!ok) {
+    document.getElementById('disc1Val').style.display='block';
+    outer: for(let si=0;si<4;si++) for(let qi=0;qi<5;qi++) if(discAnswers[si][qi]===null){
+      document.getElementById(`dq${si}_${qi}`).scrollIntoView({behavior:'smooth',block:'center'});
+      break outer;
+    }
+    return;
+  }
+  renderProfile();
+  goTo(2);
+}
+
+// ═══════════════════════════════════════
+// RENDER PROFILE
+// ═══════════════════════════════════════
+function renderProfile() {
+  const p = discPrimary, s = discSecondary;
+  const data = DISC_DESC[p];
+  const names={D:'Dominante',I:'Influyente',S:'Estable',C:'Concienzudo/a'};
+  document.getElementById('profileTitle').innerHTML = `Tipo ${p} — <span>${data.name}</span>`;
+
+  const tots = discAnswers.map(sec=>sec.reduce((sum,v)=>sum+(v||0),0));
+  const order = ['D','I','S','C'].map((l,i)=>({l,t:tots[i]})).sort((a,b)=>b.t-a.t);
+
+  let html = `<div class="score-bars-card">
+    <h3>Tus puntajes DISC · Máximo 25 por sección</h3>
+    ${order.map(({l,t})=>`
+      <div class="score-bar-row">
+        <div class="sbl" style="background:${l===p?'var(--teal)':'var(--dark)'};">${l}</div>
+        <div class="score-bar-track">
+          <div class="score-bar-fill" style="width:${Math.round(t/25*100)}%;background:${l===p?'var(--teal)':'var(--dark)'};"></div>
+        </div>
+        <div class="score-bar-val" style="color:${l===p?'var(--teal)':'var(--dark)'};">${t}</div>
+      </div>`).join('')}
+  </div>
+
+  <div class="desc-primary">
+    <div class="desc-type-badge">Tipo ${p} · ${data.name}</div>
+    <h3>¿Cómo eres?</h3>
+    <p>${data.main}</p>
+  </div>`;
+
+  const combo = data.combos[s];
+  if (combo) {
+    html += `<div class="combo-card">
+      <h4>Combinación ${combo.lbl} — ${combo.title}</h4>
+      <p>${combo.desc}</p>
+      <p class="combo-ref">📖 ${combo.ref}</p>
+    </div>`;
+  }
+
+  html += `<div class="tips-card">
+    <h3>Áreas de crecimiento para tipo ${p}</h3>
+    ${TIPS[p].map(t=>`<div class="tip-item"><span class="tip-arrow">→</span>${t}</div>`).join('')}
+  </div>`;
+
+  document.getElementById('profileContent').innerHTML = html;
+}
+
+// ═══════════════════════════════════════
+// BUILD GIFTS
+// ═══════════════════════════════════════
+function buildGifts() {
+  const wrap = document.getElementById('questionsContainer');
+  wrap.innerHTML = '';
+  QUESTIONS.forEach((q,i)=>{
+    const g = GIFT_KEYS[i%24];
+    const div = document.createElement('div');
+    div.className = 'q-card';
+    div.innerHTML = `
+      <div class="q-num">Pregunta ${i+1} · ${GIFT_NAMES[g]}</div>
+      <div class="q-text">${q}</div>
+      <div class="q-opts">
+        ${[1,2,3].map((v,vi)=>`
+          <div class="q-opt${giftAnswers[i]===v?' selected':''}" onclick="setGift(${i},${v},this)">
+            <span class="opt-n">${v}</span>${['Casi nunca','A veces','Casi siempre'][vi]}
+          </div>`).join('')}
+      </div>`;
+    wrap.appendChild(div);
+  });
+  updateGiftProg();
+}
+
+function setGift(idx, val, el) {
+  giftAnswers[idx] = val;
+  el.closest('.q-opts').querySelectorAll('.q-opt').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  updateGiftProg();
+  document.getElementById('giftsVal').style.display='none';
+}
+
+function updateGiftProg() {
+  const done = giftAnswers.filter(a=>a!==null).length;
+  document.getElementById('answeredCount').textContent = done;
+  document.getElementById('qProgFill').style.width = (done/72*100)+'%';
+}
+
+// ═══════════════════════════════════════
+// CALCULATE RESULTS
+// ═══════════════════════════════════════
+function calculateResults() {
+  const missing = giftAnswers.filter(a=>a===null).length;
+  if (missing>0) {
+    const el=document.getElementById('giftsVal');
+    el.textContent=`Por favor responde todas las preguntas (faltan ${missing}).`;
+    el.style.display='block';
+    const idx=giftAnswers.indexOf(null);
+    document.querySelectorAll('.q-card')[idx]?.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
+  const scores={};
+  GIFT_KEYS.forEach(k=>scores[k]=0);
+  giftAnswers.forEach((v,i)=>{scores[GIFT_KEYS[i%24]]+=v;});
+  const sorted=Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+  const teamScores=TEAMS.map(t=>{
+    let sc=0;
+    t.gifts.forEach(g=>{sc+=(scores[g]/9)*(55/t.gifts.length);});
+    sc += t.personality.includes(discPrimary)?25:t.personality.includes(discSecondary)?12:3;
+    if(t.gifts.includes(sorted[0][0])) sc+=20;
+    return{...t,score:Math.min(99,Math.round(sc))};
+  }).sort((a,b)=>b.score-a.score);
+  renderResults(teamScores.slice(0,4), sorted.slice(0,5));
+  goTo(4);
+}
+
+function renderResults(topTeams, topGifts) {
+  const pNames={D:'Dominante',I:'Influyente',S:'Estable',C:'Concienzudo/a'};
+  const rankL=['✦ MEJOR COINCIDENCIA','2ª OPCIÓN','3ª OPCIÓN','4ª OPCIÓN'];
+  document.getElementById('resultsContent').innerHTML = `
+    <div class="result-hero">
+      <div class="result-hero-label">Tus Resultados · Iglesia Northwood</div>
+      <div class="result-hero-title">Don principal: <span>${GIFT_NAMES[topGifts[0][0]]}</span></div>
+      <div class="result-hero-sub">Personalidad ${discPrimary+discSecondary} · ${pNames[discPrimary]} · 92 respuestas procesadas</div>
+    </div>
+
+    <div class="result-cols">
+      <div class="result-stat">
+        <div class="result-stat-val">${discPrimary+discSecondary}</div>
+        <div class="result-stat-lbl">Tu Tipo DISC</div>
+      </div>
+      <div class="result-stat">
+        <div class="result-stat-val" style="font-size:16px;padding-top:6px;">${GIFT_NAMES[topGifts[0][0]]}</div>
+        <div class="result-stat-lbl">Don Primario</div>
+      </div>
+    </div>
+
+    <div class="gifts-summary">
+      <h3>Top 5 Dones Espirituales</h3>
+      ${topGifts.map(([k,v],i)=>`
+        <div class="top-gift-row">
+          <div class="gift-rank-num">${i+1}</div>
+          <div class="gift-name-full">${GIFT_NAMES[k]}</div>
+          <div class="gift-bar-bg"><div class="gift-bar-fill" style="width:${Math.round(v/9*100)}%"></div></div>
+          <div class="gift-score-val">${v}/9</div>
+        </div>`).join('')}
+    </div>
+
+    <div class="teams-section-label">
+      <div class="section-label">Equipos Compatibles</div>
+      <h2 class="section-title">Tus ministerios <span>ideales</span></h2>
+    </div>
+
+    <div class="teams-grid">
+      ${topTeams.map((t,i)=>`
+        <div class="team-card rank-${i+1}">
+          <div class="team-badge">${t.emoji}</div>
+          <div class="team-info">
+            <div class="team-rank">${rankL[i]}</div>
+            <div class="team-name">${t.name}</div>
+            <div class="team-desc">${t.desc}</div>
+            <div class="team-gifts">${t.gifts.map(g=>`<span class="gift-tag">${GIFT_NAMES[g]}</span>`).join('')}</div>
+          </div>
+          <div class="match-score">
+            <div class="match-pct">${t.score}%</div>
+            <div class="match-pct-label">MATCH</div>
+          </div>
+        </div>`).join('')}
+    </div>
+
+    <div class="verse-box">
+      <p class="verse-text">"Dios, de su gran variedad de dones espirituales, les ha dado un don a cada uno de ustedes. Úsenlos bien para servirse los unos a los otros."</p>
+      <p class="verse-ref">1 Pedro 4:10</p>
+    </div>
+
+    <div class="cta-card">
+      <div class="accent-line"></div>
+      <h3>¿Qué sigue?</h3>
+      <p>Habla con un líder de Iglesia Northwood sobre unirte al equipo que más te llamó la atención. Haremos todo menos pecar por alcanzar las almas — ¡y tú eres parte de eso!</p>
+    </div>
+
+    <div class="restart-row">
+      <button class="btn-restart" onclick="restart()">↺ Hacer el assessment de nuevo</button>
+    </div>
+  `;
+}
+
+// ═══════════════════════════════════════
+// NAVIGATION
+// ═══════════════════════════════════════
+function goTo(n) {
+  document.getElementById('sec'+currentSec).classList.remove('active');
+  document.getElementById('sec'+n).classList.add('active');
+  currentSec = n;
+  document.getElementById('progressFill').style.width = [0,25,50,75,100][n]+'%';
+  ['lbl0','lbl1','lbl2','lbl3','lbl4'].forEach((id,i)=>
+    document.getElementById(id).classList.toggle('active', i<=n));
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function restart() {
+  discAnswers = Array(4).fill(null).map(()=>Array(5).fill(null));
+  discPrimary = null; discSecondary = null;
+  giftAnswers = new Array(72).fill(null);
+  document.getElementById('discPreview').classList.remove('show');
+  buildDisc();
+  buildGifts();
+  goTo(0);
+}
+
+// INIT
+buildDisc();
+buildGifts();
+</script>
+</body>
+</html>
