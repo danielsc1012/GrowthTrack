@@ -654,6 +654,31 @@ main { max-width: 680px; margin: 0 auto; padding: 32px 20px 64px; }
 .modal-send { flex: 1; padding: 13px 20px; background: var(--teal); color: var(--white); border: none; border-radius: 3px; font-family: 'Montserrat', Helvetica, sans-serif; font-size: 12px; font-weight: 700; letter-spacing: 0.8px; text-transform: uppercase; cursor: pointer; transition: all 0.18s; }
 .modal-send:hover { background: var(--teal-dark); }
 
+/* ── SHEETS STATUS BANNER ── */
+.sheets-banner {
+  display: none;
+  align-items: center;
+  gap: 8px;
+  font-size: 11.5px;
+  font-weight: 600;
+  padding: 10px 16px;
+  border-radius: 3px;
+  margin-bottom: 16px;
+  transition: opacity 0.4s;
+}
+.sheets-banner.loading { background: rgba(0,186,188,0.08); color: var(--teal-dark); border: 1px solid rgba(0,186,188,0.25); }
+.sheets-banner.ok      { background: rgba(0,186,188,0.08); color: var(--teal-dark); border: 1px solid rgba(0,186,188,0.25); }
+.sheets-banner.warn    { background: rgba(241,93,44,0.07);  color: #c94a20;          border: 1px solid rgba(241,93,44,0.2); }
+.sheets-dot {
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+.sheets-dot-loading { background: var(--teal); animation: pulse 1.2s infinite; }
+.sheets-dot-ok      { background: var(--teal); }
+.sheets-dot-warn    { background: var(--orange); }
+@keyframes pulse { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
+
 /* ── PRINT STYLES ── */
 @media print {
   header, .progress-wrap, .page-footer,
@@ -761,6 +786,10 @@ main { max-width: 680px; margin: 0 auto; padding: 32px 20px 64px; }
 </div>
 
 <main>
+
+<div id="sheetsBanner" class="sheets-banner loading" style="display:flex;">
+  <span class="sheets-dot sheets-dot-loading"></span> Cargando equipos desde Google Sheets…
+</div>
 
 <!-- ══ SEC 0: INTRO ══ -->
 <div class="section active" id="sec0">
@@ -1088,7 +1117,82 @@ const GIFT_NAMES = {
   Q:'Misionero/a',R:'Música / Adoración',S:'Pastoreo',T:'Profecía',U:'Servicio',
   V:'Enseñanza',W:'Lenguas e Interpretación',X:'Sabiduría'
 };
-const TEAMS = [
+// Teams loaded dynamically from Google Sheets — see loadTeams()
+let TEAMS = [];
+
+// ═══════════════════════════════════════
+// GOOGLE SHEETS CSV URL
+// ═══════════════════════════════════════
+const SHEETS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQjb5YlLkYCTRxegIosEoptJ844N1M7M1uFohKpCptKDKlmkqhAQpC0UQdNMaUhCIR_oBEVB7KHsDHu/pub?gid=1318868373&single=true&output=csv';
+
+function parseCSV(text) {
+  const lines = text.trim().split('\n');
+  const headers = lines[0].split(',').map(h => h.trim().replace(/^"|"$/g, ''));
+  return lines.slice(1).map(line => {
+    // Handle quoted fields that may contain commas
+    const cols = [];
+    let cur = '', inQ = false;
+    for (let i = 0; i < line.length; i++) {
+      const ch = line[i];
+      if (ch === '"') { inQ = !inQ; }
+      else if (ch === ',' && !inQ) { cols.push(cur.trim()); cur = ''; }
+      else { cur += ch; }
+    }
+    cols.push(cur.trim());
+    const obj = {};
+    headers.forEach((h, i) => { obj[h] = (cols[i] || '').replace(/^"|"$/g, '').trim(); });
+    return obj;
+  }).filter(row => row['Nombre'] && row['Nombre'].length > 0);
+}
+
+async function loadTeams() {
+  showTeamsLoader(true);
+  try {
+    // Use a CORS proxy so the browser can fetch the CSV cross-origin
+    const proxyUrl = `https://api.allorigins.win/raw?url=${encodeURIComponent(SHEETS_CSV_URL)}`;
+    const res = await fetch(proxyUrl);
+    if (!res.ok) throw new Error('HTTP ' + res.status);
+    const text = await res.text();
+    const rows = parseCSV(text);
+    if (rows.length === 0) throw new Error('No data rows found');
+    TEAMS = rows.map((row, i) => ({
+      id: 'team_' + i,
+      emoji: row['Emoji'] || '⭐',
+      name: row['Nombre'] || '',
+      desc: row['Descripcion'] || '',
+      gifts: (row['Dones'] || '').split('|').map(s => s.trim()).filter(Boolean),
+      personality: (row['Personalidades'] || '').split('|').map(s => s.trim()).filter(Boolean)
+    }));
+    showTeamsLoader(false);
+    console.log(`✅ ${TEAMS.length} equipos cargados desde Google Sheets`);
+  } catch (err) {
+    console.warn('⚠️ No se pudo cargar desde Google Sheets, usando datos locales.', err);
+    TEAMS = FALLBACK_TEAMS;
+    showTeamsLoader(false, true);
+  }
+}
+
+function showTeamsLoader(loading, usedFallback = false) {
+  const banner = document.getElementById('sheetsBanner');
+  if (!banner) return;
+  if (loading) {
+    banner.innerHTML = `<span class="sheets-dot sheets-dot-loading"></span> Cargando equipos desde Google Sheets…`;
+    banner.className = 'sheets-banner loading';
+    banner.style.display = 'flex';
+  } else if (usedFallback) {
+    banner.innerHTML = `<span class="sheets-dot sheets-dot-warn"></span> Usando equipos guardados localmente (sin conexión a Sheets)`;
+    banner.className = 'sheets-banner warn';
+    banner.style.display = 'flex';
+  } else {
+    banner.innerHTML = `<span class="sheets-dot sheets-dot-ok"></span> ${TEAMS.length} equipos cargados desde Google Sheets`;
+    banner.className = 'sheets-banner ok';
+    banner.style.display = 'flex';
+    setTimeout(() => { banner.style.opacity = '0'; setTimeout(() => { banner.style.display = 'none'; }, 400); }, 3000);
+  }
+}
+
+// Fallback in case Sheets is unreachable
+const FALLBACK_TEAMS = [
   {id:'propresenter',emoji:'🎛️',name:'ProPresenter (Media)',desc:'Mantiene los servicios funcionando sin problemas con organización y confiabilidad detrás de escena.',gifts:['A','J','U'],personality:['C','D']},
   {id:'luces',emoji:'💡',name:'Luces (LightKey)',desc:'Usa habilidad artística para crear una atmósfera que apoya la adoración y la Palabra.',gifts:['C','J','U'],personality:['I','C']},
   {id:'worship',emoji:'🎶',name:'Adoración – Vocales / Músicos',desc:'Lleva a la iglesia a la presencia de Dios a través de la música y la expresión artística.',gifts:['R','F','T'],personality:['I','D']},
@@ -1285,11 +1389,48 @@ function calculateResults() {
   GIFT_KEYS.forEach(k=>scores[k]=0);
   giftAnswers.forEach((v,i)=>{scores[GIFT_KEYS[i%24]]+=v;});
   const sorted=Object.entries(scores).sort((a,b)=>b[1]-a[1]);
+  // Weighted position tables — index 0 = 1st gift/personality
+  const GIFT_WEIGHTS = {
+    1: [1.00],
+    2: [0.60, 0.40],
+    3: [0.50, 0.30, 0.20],
+    4: [0.40, 0.30, 0.20, 0.10]
+  };
+  const PERS_WEIGHTS = {
+    1: [1.00],
+    2: [0.60, 0.40],
+    3: [0.50, 0.30, 0.20],
+    4: [0.40, 0.30, 0.20, 0.10]
+  };
+
   const teamScores=TEAMS.map(t=>{
     let sc=0;
-    t.gifts.forEach(g=>{sc+=(scores[g]/9)*(55/t.gifts.length);});
-    sc += t.personality.includes(discPrimary)?25:t.personality.includes(discSecondary)?12:3;
-    if(t.gifts.includes(sorted[0][0])) sc+=20;
+
+    // Gift score (0–55 pts) — weighted by position
+    const gw = GIFT_WEIGHTS[Math.min(t.gifts.length, 4)] || GIFT_WEIGHTS[4];
+    t.gifts.forEach((g,i)=>{
+      const weight = gw[i] ?? gw[gw.length-1];
+      sc += (scores[g]/9) * 55 * weight;
+    });
+
+    // Personality score (0–25 pts) — weighted by position
+    const pw = PERS_WEIGHTS[Math.min(t.personality.length, 4)] || PERS_WEIGHTS[4];
+    let persScore = 0;
+    // Check primary DISC type
+    const priIdx = t.personality.indexOf(discPrimary);
+    const secIdx = t.personality.indexOf(discSecondary);
+    if (priIdx !== -1) {
+      persScore += 25 * (pw[priIdx] ?? pw[pw.length-1]);
+    }
+    if (secIdx !== -1 && secIdx !== priIdx) {
+      persScore += 25 * (pw[secIdx] ?? pw[pw.length-1]) * 0.5; // secondary type worth half
+    }
+    sc += Math.min(persScore, 25);
+
+    // Top gift bonus (0–20 pts) — only if top gift matches 1st position in team
+    if (t.gifts[0] === sorted[0][0]) sc += 20;
+    else if (t.gifts.includes(sorted[0][0])) sc += 10;
+
     return{...t,score:Math.min(99,Math.round(sc))};
   }).sort((a,b)=>b.score-a.score);
   renderResults(teamScores.slice(0,4), sorted.slice(0,5));
@@ -1473,12 +1614,23 @@ function sendEmail() {
   giftAnswers.forEach((v,i) => { giftScores[GIFT_KEYS[i%24]] += v; });
   const top5 = Object.entries(giftScores).sort((a,b)=>b[1]-a[1]).slice(0,5);
 
-  // Build team scores (same logic as calculateResults)
+  const GIFT_W = {1:[1],2:[0.60,0.40],3:[0.50,0.30,0.20],4:[0.40,0.30,0.20,0.10]};
+  const PERS_W = {1:[1],2:[0.60,0.40],3:[0.50,0.30,0.20],4:[0.40,0.30,0.20,0.10]};
+
+  // Build team scores (same weighted logic as calculateResults)
   const teamScores = TEAMS.map(t => {
     let sc = 0;
-    t.gifts.forEach(g => { sc += (giftScores[g]/9)*(55/t.gifts.length); });
-    sc += t.personality.includes(discPrimary)?25:t.personality.includes(discSecondary)?12:3;
-    if (t.gifts.includes(top5[0][0])) sc += 20;
+    const gw = GIFT_W[Math.min(t.gifts.length,4)] || GIFT_W[4];
+    t.gifts.forEach((g,i)=>{ sc += (giftScores[g]/9)*55*(gw[i]??gw[gw.length-1]); });
+    const pw = PERS_W[Math.min(t.personality.length,4)] || PERS_W[4];
+    let ps = 0;
+    const pi = t.personality.indexOf(discPrimary);
+    const si2 = t.personality.indexOf(discSecondary);
+    if (pi !== -1) ps += 25*(pw[pi]??pw[pw.length-1]);
+    if (si2 !== -1 && si2 !== pi) ps += 25*(pw[si2]??pw[pw.length-1])*0.5;
+    sc += Math.min(ps, 25);
+    if (t.gifts[0] === top5[0][0]) sc += 20;
+    else if (t.gifts.includes(top5[0][0])) sc += 10;
     return {...t, score: Math.min(99, Math.round(sc))};
   }).sort((a,b)=>b.score-a.score).slice(0,4);
 
@@ -1525,9 +1677,12 @@ document.getElementById('emailModal').addEventListener('click', function(e) {
   if (e.target === this) closeEmailModal();
 });
 
-// INIT
-buildDisc();
-buildGifts();
+// INIT — load teams from Google Sheets, then build UI
+(async () => {
+  await loadTeams();
+  buildDisc();
+  buildGifts();
+})();
 </script>
 </body>
 </html>
